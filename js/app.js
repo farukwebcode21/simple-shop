@@ -28,6 +28,8 @@ const showProducts = (products) => {
   }
 };
 
+//  add to cart 
+
 let count = 0;
 const addToCart = (id, price) => {
   count = count + 1;
@@ -100,7 +102,6 @@ const getDetailsId =(id)=>{
 const displayProductDetails =(product)=>{
   console.log(product);
   const container = document.querySelector('.container');
-
   container.innerHTML =`
     <div class="card mb-3 border-info p-4">
     <div class="row g-4">
