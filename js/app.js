@@ -22,7 +22,7 @@ const showProducts = (products) => {
       <p>Rating :${product.rating.rate} Review :${product.rating.count}</p>
       <h3>Price: $ ${product.price}</h3>
       <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-outline-success">add to cart</button>
-      <button onclick="showDetails()" id="details-btn" class="btn btn-outline-danger">Details</button></div>
+      <button onclick="getDetailsId(${product.id})" id="details-btn" class="btn btn-outline-danger">Details</button></div>
       `;
     document.getElementById("all-products").appendChild(div);
   }
@@ -89,11 +89,37 @@ const updateTotal = () => {
 
 loadProducts();
 
-// Show Details Button 
-const showDetails =()=>{
-  
- 
-  
+// Show single products Details 
+
+const getDetailsId =(id)=>{
+  fetch(`https://fakestoreapi.com/products/${id}`)
+  .then(res => res.json())
+  .then(data =>displayProductDetails(data));
+}
+// Display Single products details
+const displayProductDetails =(product)=>{
+  console.log(product);
+  const container = document.querySelector('.container');
+
+  container.innerHTML =`
+    <div class="card mb-3 border-info p-4">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <img src="${product.image}" class=" w-50 rounded-start" alt="...">
+      </div>
+     <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">${product.title}</h5>
+        <p class="text-danger">Category:${product.category}</p>
+        <p class="card-text">${product.description}</p>
+        <h4>Price :${product.price}</h4>
+        <p class="card-text text-danger ">Rating: ${product.rating.rate} Review : ${product.rating.count}</p>
+      </div>
+      </div>
+    </div>
+    </div>
+  `;
+
 }
 
 
