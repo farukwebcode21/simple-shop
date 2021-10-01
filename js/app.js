@@ -100,7 +100,6 @@ const getDetailsId =(id)=>{
 }
 // Display Single products details
 const displayProductDetails =(product)=>{
-  console.log(product);
   const container = document.querySelector('.container');
   container.innerHTML =`
     <div class="card mb-3 border-info p-4">
